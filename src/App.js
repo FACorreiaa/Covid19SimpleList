@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Title from "./components/Layout/Title";
 import Moment from "react-moment";
 import {
   Grid,
   Container,
-  Button,
   Card,
-  CardActions,
   CardContent,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Paper,
 } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "./components/Layout/Header";
 import Footer from "./components/Layout/Footer";
@@ -63,105 +55,207 @@ function App() {
       }
     };
     fetchData();
-
-    console.log(data);
   }, []);
 
   return (
     <div>
       <Header />
       <Container>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <Typography variant="h5" component="h2">
-            Covid-19 List
+        <Title />
+        {error ? (
+          <Typography variant="h1" component="h1" color="error" align="center">
+            Something went wrong...
           </Typography>
-        </Grid>
-        <Grid container direction="column" justify="center" alignItems="center">
-          <Card p={3} className={classes.root}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                Global Count
-              </Typography>
-              {console.log(data)}
-              {error && <div>Something Went Wrong...</div>}
-              {loading ? (
-                <div>Loading...</div>
-              ) : (
-                <div>
+        ) : (
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Card p={3} className={classes.root}>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  Global Count
+                </Typography>
+                {loading ? (
+                  <div>Loading...</div>
+                ) : (
+                  <div>
+                    <Typography variant="body2" component="p">
+                      New Confirmed:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.NewConfirmed}
+                    </Typography>
+                    <br />
+                    <Typography variant="body2" component="p">
+                      Total Confirmed:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.TotalConfirmed}
+                    </Typography>
+                    <br />
+                    <Typography variant="body2" component="p">
+                      New Deaths:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.NewDeaths}
+                    </Typography>
+                    <br />{" "}
+                    <Typography variant="body2" component="p">
+                      Total Deaths:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.TotalDeaths}
+                    </Typography>
+                    <br />{" "}
+                    <Typography variant="body2" component="p">
+                      New Recovered:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.NewRecovered}
+                    </Typography>
+                    <br />{" "}
+                    <Typography variant="body2" component="p">
+                      Total Recovered:
+                    </Typography>
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      {data.Global.TotalRecovered}
+                    </Typography>
+                  </div>
+                )}
+                <br />
+                <Moment>{dateToFormat}</Moment>
+              </CardContent>
+            </Card>
+          </Grid>
+        )}
+
+        <br />
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          {data.Countries.map((row) => (
+            <div className={classes.root} key={row.name}>
+              <Paper elevation={3}>
+                <Grid
+                  container
+                  direction="column"
+                  justify="space-between"
+                  alignItems="center"
+                >
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                  >
+                    {row.Country}
+                  </Typography>
+                </Grid>
+                <br />
+                <Grid item xs={12} sm={6}>
+                  {" "}
                   <Typography variant="body2" component="p">
-                    New Confirmed:
+                    New confirmed
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.NewConfirmed}
+                    {row.NewConfirmed}
                   </Typography>
-                  <br />
                   <Typography variant="body2" component="p">
-                    Total Confirmed:
+                    Total Confirmed
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.TotalConfirmed}
+                    {row.TotalConfirmed}
                   </Typography>
-                  <br />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  {" "}
                   <Typography variant="body2" component="p">
-                    New Deaths:
+                    New Deaths
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.NewDeaths}
+                    {row.NewDeaths}
                   </Typography>
-                  <br />{" "}
                   <Typography variant="body2" component="p">
-                    Total Deaths:
+                    Total Deaths
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.TotalDeaths}
+                    {row.TotalDeaths}
                   </Typography>
-                  <br />{" "}
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  {" "}
                   <Typography variant="body2" component="p">
-                    New Recovered:
+                    New Recovered
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.NewRecovered}
+                    {row.NewRecovered}
                   </Typography>
-                  <br />{" "}
                   <Typography variant="body2" component="p">
-                    Total Recovered:
+                    Total Recovered
                   </Typography>
                   <Typography
                     className={classes.title}
                     color="textSecondary"
                     gutterBottom
                   >
-                    {data.Global.TotalRecovered}
+                    {row.TotalRecovered}
                   </Typography>
-                </div>
-              )}
-              <br />
-              <Moment>{dateToFormat}</Moment>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid>
-          <TableContainer p={3} component={Paper}>
+                </Grid>
+              </Paper>
+            </div>
+          ))}
+          {/* <TableContainer p={3} component={Paper}>
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -190,7 +284,7 @@ function App() {
                 ))}
               </TableBody>
             </Table>
-          </TableContainer>
+          </TableContainer> */}
         </Grid>
       </Container>
       <Footer />
