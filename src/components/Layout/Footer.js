@@ -3,9 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
 const useStyles = makeStyles((theme) => ({
   text: {
     padding: theme.spacing(2, 2, 0),
@@ -42,16 +40,54 @@ const Footer = () => {
     <React.Fragment>
       <CssBaseline />
       <div className={classes.grow}>
-        <AppBar position="fixed" color="primary" className={classes.appBar}>
+        <AppBar position="fixed" color="default" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
-              About Me
-            </Typography>
-            <Button color="inherit">Linkedin</Button>
-            <Button color="inherit">Twitter</Button>
-            <Button color="inherit">Facebook</Button>
-            <Button color="inherit">Github</Button>
-            <Button color="inherit">Portfolio</Button>
+            <Button color="primary">
+              <a
+                href="https://www.linkedin.com/in/fernando-correia-ab018079/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Linkedin
+              </a>
+            </Button>
+
+            <Button color="primary">
+              <a
+                href="https://twitter.com/FACorreiaa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Twitter
+              </a>
+            </Button>
+            <Button color="primary">
+              <a
+                href="https://www.facebook.com/Nandooo316"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook
+              </a>
+            </Button>
+            <Button color="primary">
+              <a
+                href="https://github.com/FACorreiaa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Github
+              </a>
+            </Button>
+            <Button color="primary">
+              <a
+                href="https://facorreiaa.github.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Portfolio
+              </a>
+            </Button>
           </Toolbar>
         </AppBar>
       </div>
